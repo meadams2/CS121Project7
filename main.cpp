@@ -62,3 +62,28 @@ void loadStudents(std::vector students){
 	std::ifstream inFile;
 	std::string studentString;
 
+	inFile.open("students.csv");
+	while (getline(inFile, studentString)){
+		converter.clear();
+		converter.str(studentString);
+
+		student = new Student();
+		student -> init(studentString);
+		students.push_back(student); 
+	} //end while loop
+} //end loadStudents
+
+void delStudents(std::vector students){
+	for (auto& item: students){
+		students.pop_back();
+		student -> ~Student();
+	} //end for loop
+} //end delStudents
+
+void showStudentNames(std::vector students){
+	for (auto& item: students){
+		std::cout << student -> getLastFirst();
+	} //end for loop
+} //end showStudentNames
+
+		
