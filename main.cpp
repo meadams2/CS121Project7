@@ -8,6 +8,7 @@
 #include "address.h"
 #include "student.h"
 
+void loadStudents(std::vector students);
 void printStudents(std::vector students);
 void showStudentNames(std::vector students);
 void findStudent(std::vector students);
@@ -56,4 +57,8 @@ std::string menu(){
 
 	return userInput;
 } //end menu()
+
+void loadStudents(std::vector students){
+	std::ifstream inFile;
+	std::string studentString;
 
