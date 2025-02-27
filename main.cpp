@@ -10,15 +10,15 @@
 #include "address.h"
 #include "student.h"
 
-void loadStudents(std::vector<Student>& students);
-//void printStudents(std::vector students);
-void showStudentNames(std::vector<Student>& students);
-//void findStudent(std::vector students);
-void delStudents(std::vector<Student>& students);
+void loadStudents(std::vector<std::shared_ptr<Student>>& students);
+//void printStudents(std::vector<std::shared_ptr<Student>>& students);
+void showStudentNames(std::vector<std::shared_ptr<Student>>& students);
+//void findStudent(std::vector<std::shared_ptr<Student>>& students);
+void delStudents(std::vector<std::shared_ptr<Student>>& students);
 std::string menu();
 
 int main(){
-	std::vector<Student> students;
+	std::vector<std::shared_ptr<Student>> students;
 	loadStudents(students);
 	bool keepGoing = true;
 
@@ -60,7 +60,7 @@ std::string menu(){
 	return userInput;
 } //end menu()
 
-void loadStudents(std::vector<Student>& students){
+void loadStudents(std::vector<std::shared_ptr<Student>>& students){
 	std::ifstream inFile;
 	std::stringstream converter;
 	std::string studentString;
@@ -70,13 +70,13 @@ void loadStudents(std::vector<Student>& students){
 		converter.clear();
 		converter.str(studentString);
 
-		auto student = std::make_shared<Student>;
+		auto student = std::make_shared<Student>();
 		student->init(studentString);
 		students.push_back(student);
 	} //end while loop
 } //end loadStudents
 
-void delStudents(std::vector<Student>& students){
+void delStudents(std::vector<std::shared_ptr<Student>>& students){
 	bool keepGoing = true;
 	while (keepGoing){
 		if (students.empty()){
@@ -88,9 +88,9 @@ void delStudents(std::vector<Student>& students){
 	} //end while loop
 } //end delStudents
 
-void showStudentNames(std::vector<Student>& students){
+void showStudentNames(std::vector<std::shared_ptr<Student>>& students){
 	for (auto& item: students){
-		std::cout << item.getLastFirst() << std::endl;
+		std::cout << item->getLastFirst() << std::endl;
 	} //end for loop
 } //end showStudentNames
 
