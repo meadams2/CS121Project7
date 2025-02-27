@@ -1,9 +1,11 @@
 // main.cpp
 
+#include <memory>
 #include <vector>
 #include <iostream>
 #include <fstream>
 #include <sstream>
+
 #include "date.h"
 #include "address.h"
 #include "student.h"
@@ -68,8 +70,8 @@ void loadStudents(std::vector<Student>& students){
 		converter.clear();
 		converter.str(studentString);
 
-		Student student;
-		student.init(studentString);
+		auto student = std::make_shared<Student>;
+		student->init(studentString);
 		students.push_back(student);
 	} //end while loop
 } //end loadStudents
@@ -81,7 +83,7 @@ void delStudents(std::vector<Student>& students){
 			keepGoing = false;
 		} //end if
 		else {
-			students.pop_back();
+			students.clear();
 		} //end else
 	} //end while loop
 } //end delStudents
