@@ -8,11 +8,11 @@
 #include "address.h"
 #include "student.h"
 
-void loadStudents(std::vector students);
-void printStudents(std::vector students);
-void showStudentNames(std::vector students);
-void findStudent(std::vector students);
-void delStudents(std::vector students);
+void loadStudents(std::vector<Student> students);
+//void printStudents(std::vector students);
+void showStudentNames(std::vector<Student> students);
+//void findStudent(std::vector students);
+void delStudents(std::vector<Student> students);
 std::string menu();
 
 int main(){
@@ -23,23 +23,23 @@ int main(){
 	while (keepGoing){
 		menu();
 
-		if (menu() == 0){
+		if (menu() == "0"){
 			delStudents(students);
 			keepGoing = false;
 		} //End quit condition
 		
-		else if (menu() == 1){
+		else if (menu() == "1"){
 			showStudentNames(students);
 		} //End studentNames condition
-
-		else if (menu() == 2){
+/*
+		else if (menu() == "2"){
 			printStudents(students);
 		} //End print students condition
 
-		else if (menu() == 3){
+		else if (menu() == "3"){
 			findStudent(students);
 		} //End find student condition
-
+*/
 	} //end while loop
 
 } //end main
@@ -58,7 +58,7 @@ std::string menu(){
 	return userInput;
 } //end menu()
 
-void loadStudents(std::vector students){
+void loadStudents(std::vector<Student> vector){
 	std::ifstream inFile;
 	std::string studentString;
 
@@ -73,14 +73,14 @@ void loadStudents(std::vector students){
 	} //end while loop
 } //end loadStudents
 
-void delStudents(std::vector students){
+void delStudents(std::vector<Student> vector){
 	for (auto& item: students){
 		students.pop_back();
 		student -> ~Student();
 	} //end for loop
 } //end delStudents
 
-void showStudentNames(std::vector students){
+void showStudentNames(std::vector<Student> vector){
 	for (auto& item: students){
 		std::cout << student -> getLastFirst();
 	} //end for loop
