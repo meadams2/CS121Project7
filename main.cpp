@@ -60,6 +60,7 @@ std::string menu(){
 
 void loadStudents(std::vector<Student> vector){
 	std::ifstream inFile;
+	std::stringstream converter;
 	std::string studentString;
 
 	inFile.open("students.csv");
