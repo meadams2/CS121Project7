@@ -104,11 +104,12 @@ int Student::getCreditHours(){
 void Student::printStudent(){
 	std::cout << getFirstName() << " " << getLastName() << std::endl;
 	address->printAddress(); 
-	std::cout << std::endl;
+//	std::cout << std::endl;
 	std::cout << "DOB: ";
 	birthDate->printDate();
 	std::cout << "Grad: ";
        	gradDate->printDate();
 	std::cout << "Credits: " << getCreditHours() << std::endl;
+	std::cout << std::endl;
 	//std::cout << getLastName() << "," << getFirstName() << std::endl;
 } // end printStudent

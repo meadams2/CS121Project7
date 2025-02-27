@@ -11,9 +11,9 @@
 #include "student.h"
 
 void loadStudents(std::vector<std::shared_ptr<Student>>& students);
-//void printStudents(std::vector<std::shared_ptr<Student>>& students);
+void printStudents(std::vector<std::shared_ptr<Student>>& students);
 void showStudentNames(std::vector<std::shared_ptr<Student>>& students);
-//void findStudent(std::vector<std::shared_ptr<Student>>& students);
+void findStudent(std::vector<std::shared_ptr<Student>>& students);
 void delStudents(std::vector<std::shared_ptr<Student>>& students);
 std::string menu();
 
@@ -33,7 +33,7 @@ int main(){
 		else if (userInput == "1"){
 			showStudentNames(students);
 		} //End studentNames condition
-/*
+
 		else if (userInput == "2"){
 			printStudents(students);
 		} //End print students condition
@@ -41,7 +41,7 @@ int main(){
 		else if (userInput == "3"){
 			findStudent(students);
 		} //End find student condition
-*/
+
 	} //end while loop
 
 } //end main
@@ -92,6 +92,25 @@ void showStudentNames(std::vector<std::shared_ptr<Student>>& students){
 	for (auto& item: students){
 		std::cout << item->getLastFirst() << std::endl;
 	} //end for loop
+	std::cout << std::endl;
 } //end showStudentNames
 
-		
+void printStudents(std::vector<std::shared_ptr<Student>>& students){
+	for (auto& item: students){
+		item->printStudent();
+	} //end for loop
+} //end printStudents()
+
+void findStudent(std::vector<std::shared_ptr<Student>>& students){
+	std::string lastNameChoice;
+	std::cout << "Last Name of Student: ";
+	std::cin >> lastNameChoice;
+	for (auto& item: students){
+		std::string studentsName = item->getLastFirst();
+		std::size_t studentFound = studentsName.find(lastNameChoice);
+		if (studentFound != std::string::npos){
+			std::cout << item->getLastFirst() << std::endl;
+			item->printStudent();
+		} //end if
+	} //end for loop
+} // end findStudent()
