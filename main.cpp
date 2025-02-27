@@ -8,11 +8,11 @@
 #include "address.h"
 #include "student.h"
 
-void loadStudents(std::vector<Student> students);
+void loadStudents(std::vector<Student>& students);
 //void printStudents(std::vector students);
-void showStudentNames(std::vector<Student> students);
+void showStudentNames(std::vector<Student>& students);
 //void findStudent(std::vector students);
-void delStudents(std::vector<Student> students);
+void delStudents(std::vector<Student>& students);
 std::string menu();
 
 int main(){
@@ -23,20 +23,20 @@ int main(){
 	while (keepGoing){
 		menu();
 
-		if (menu() == "0"){
+		if (userInput == "0"){
 			delStudents(students);
 			keepGoing = false;
 		} //End quit condition
 		
-		else if (menu() == "1"){
+		else if (userInput == "1"){
 			showStudentNames(students);
 		} //End studentNames condition
 /*
-		else if (menu() == "2"){
+		else if (userInput == "2"){
 			printStudents(students);
 		} //End print students condition
 
-		else if (menu() == "3"){
+		else if (userInput == "3"){
 			findStudent(students);
 		} //End find student condition
 */
@@ -58,7 +58,7 @@ std::string menu(){
 	return userInput;
 } //end menu()
 
-void loadStudents(std::vector<Student> vector){
+void loadStudents(std::vector<Student>& vector){
 	std::ifstream inFile;
 	std::stringstream converter;
 	std::string studentString;
@@ -68,22 +68,27 @@ void loadStudents(std::vector<Student> vector){
 		converter.clear();
 		converter.str(studentString);
 
-		student = new Student();
-		student -> init(studentString);
-		students.push_back(student); 
+		Student student;
+		student.init(studentString);
+		students.push_back(student);
 	} //end while loop
 } //end loadStudents
 
-void delStudents(std::vector<Student> vector){
-	for (auto& item: students){
-		students.pop_back();
-		student -> ~Student();
-	} //end for loop
+void delStudents(std::vector<Student>& vector){
+	bool keepGoing = true;
+	while (keepGoing){
+		if (students.empty()){
+			keepGoing = false;
+		} //end if
+		else {
+			students.pop_back();
+		} //end else
+	} //end while loop
 } //end delStudents
 
-void showStudentNames(std::vector<Student> vector){
+void showStudentNames(std::vector<Student>& vector){
 	for (auto& item: students){
-		std::cout << student -> getLastFirst();
+		std::cout << item.getLastFirst() << std::endl;
 	} //end for loop
 } //end showStudentNames
 
