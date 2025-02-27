@@ -10,7 +10,7 @@ date.o: date.h date.cpp
 address.o: address.h address.cpp
 	g++ -c -g address.cpp
 
-student.o: addhress.h date.h student.h student.cpp
+student.o: address.h date.h student.h student.cpp
 	g++ -c -g student.cpp
 
 clean: 

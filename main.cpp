@@ -21,7 +21,7 @@ int main(){
 	bool keepGoing = true;
 
 	while (keepGoing){
-		menu();
+		std::string userInput = menu();
 
 		if (userInput == "0"){
 			delStudents(students);
@@ -58,7 +58,7 @@ std::string menu(){
 	return userInput;
 } //end menu()
 
-void loadStudents(std::vector<Student>& vector){
+void loadStudents(std::vector<Student>& students){
 	std::ifstream inFile;
 	std::stringstream converter;
 	std::string studentString;
@@ -74,7 +74,7 @@ void loadStudents(std::vector<Student>& vector){
 	} //end while loop
 } //end loadStudents
 
-void delStudents(std::vector<Student>& vector){
+void delStudents(std::vector<Student>& students){
 	bool keepGoing = true;
 	while (keepGoing){
 		if (students.empty()){
@@ -86,7 +86,7 @@ void delStudents(std::vector<Student>& vector){
 	} //end while loop
 } //end delStudents
 
-void showStudentNames(std::vector<Student>& vector){
+void showStudentNames(std::vector<Student>& students){
 	for (auto& item: students){
 		std::cout << item.getLastFirst() << std::endl;
 	} //end for loop
