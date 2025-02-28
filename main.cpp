@@ -106,11 +106,11 @@ void findStudent(std::vector<std::shared_ptr<Student>>& students){
 	std::cout << "Last Name of Student: ";
 	std::cin >> lastNameChoice;
 	for (auto& item: students){
-		std::string studentsName = item->getLastFirst();
+		std::string studentsName = item->getLastName();
 		std::size_t studentFound = studentsName.find(lastNameChoice);
 		if (studentFound != std::string::npos){
-			std::cout << item->getLastFirst() << std::endl;
 			item->printStudent();
 		} //end if
+		std::cout << std::endl;
 	} //end for loop
 } // end findStudent()
